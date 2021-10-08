@@ -1,0 +1,6 @@
+
+### Consumer Service
+GET http://localhost:3001
+
+### Producer Service
+GET http://localhost:3002
