@@ -17,7 +17,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigurationService);
 
-  await app.listen(3002);
+  await app.listen(3000);
 
   logger.log('Starting in an environment of ' + configService.env, 'Main');
 

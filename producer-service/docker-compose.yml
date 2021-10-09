@@ -1,0 +1,25 @@
+version: "3.5"
+services:
+  producer:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: build
+    container_name: 'producer-service'
+    command: npm run start:dev
+    ports:
+        - 3000:3000
+    volumes:
+      - .:/home/node/app/:rw
+    environment:
+      APP_ENV: DEVELOPMENT
+      APP_NAME: producer-service
+      RABBITMQ_URL: amqp://admin:admin@localhost:5672
+      RABBITMQ_QUEUE: nest-messages
+    networks:
+        - producer-network
+  
+
+networks:
+  producer-network:
+    driver: bridge
