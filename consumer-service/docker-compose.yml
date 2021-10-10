@@ -1,23 +1,23 @@
 version: "3.5"
 services:
-  producer:
+  consumer:
     build:
       dockerfile: Dockerfile
       context: .
       target: build
-    container_name: 'producer-service'
+    container_name: 'consumer-service'
     command: npm run start:dev
     ports:
-        - 3000:3000
+        - 3002:3000
     volumes:
       - .:/home/node/app/:rw
     environment:
       APP_ENV: DEVELOPMENT
-      APP_NAME: producer-service
+      APP_NAME: consumer-service
       RABBITMQ_URL: amqp://admin:admin@192.168.0.115:5672
-      RABBITMQ_QUEUE: products
+      RABBITMQ_QUEUE: users
     networks:
-        - producer-network
+        - consumer-network
 networks:
-  producer-network:
+  consumer-network:
     driver: bridge

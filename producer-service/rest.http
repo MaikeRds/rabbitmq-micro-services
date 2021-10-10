@@ -1,2 +1,16 @@
-###
-GET http://localhost:3002
+### Create Product
+POST http://localhost:3000/product
+content-type: application/json
+
+{
+    "codigo": "6010",
+    "nome": "Produto 01"
+}
+
+### Create User
+POST http://localhost:3000/user
+content-type: application/json
+
+{
+    "nome": "Maike Rodrigues"
+}

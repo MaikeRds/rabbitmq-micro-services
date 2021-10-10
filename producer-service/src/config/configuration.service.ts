@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ClientOptions, Transport } from '@nestjs/microservices';
 /**
  * Service dealing with app config based operations.
  *
@@ -23,5 +24,37 @@ export class ConfigurationService {
 
   get rabbitmqQueue(): string {
     return this.configService.get<string>('app.rabbitmq.queue');
+  }
+
+  getRMQProductOptions(): {
+    transport: Transport.RMQ;
+  } & ClientOptions {
+    return {
+      transport: Transport.RMQ,
+      options: {
+        urls: [this.rabbitmqUrl],
+        queue: 'products',
+        noAck: false,
+        queueOptions: {
+          durable: true,
+        },
+      },
+    };
+  }
+
+  getRMQUserOptions(): {
+    transport: Transport.RMQ;
+  } & ClientOptions {
+    return {
+      transport: Transport.RMQ,
+      options: {
+        urls: [this.rabbitmqUrl],
+        queue: 'users',
+        noAck: false,
+        queueOptions: {
+          durable: true,
+        },
+      },
+    };
   }
 }

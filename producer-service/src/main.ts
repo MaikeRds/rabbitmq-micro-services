@@ -29,6 +29,7 @@ async function bootstrap() {
       options: {
         urls: [configService.rabbitmqUrl],
         queue: configService.rabbitmqQueue,
+        noAck: false,
         queueOptions: {
           durable: true,
         },
